@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Chatbot from '../components/Chatbot'
+
 import BarangayID from './services/BarangayID'
 import Clearance from './services/Clearance'
 import BusinessPermit from './services/BusinessPermit'
@@ -21,11 +21,10 @@ import DisputeResolution from './services/DisputeResolution'
 import Officials from './services/Officials'
 
 const Dashboard = () => {
-  const [isChatOpen, setIsChatOpen] = useState(false)
+ 
 
   const [activePage, setActivePage] = useState<string | null>(null)
-  const toggleChat = () => setIsChatOpen(!isChatOpen)
-
+  
   const renderActivePage = () => {
     switch (activePage) {
       // Certificates & Permits
@@ -348,12 +347,6 @@ const Dashboard = () => {
               >
                 Officials
               </button>
-              <button
-                onClick={toggleChat}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-all duration-200 font-medium shadow-sm"
-              >
-                {isChatOpen ? 'Close Assistant' : 'Digital Assistant'}
-              </button>
             </div>
           </div>
         </nav>
@@ -361,19 +354,8 @@ const Dashboard = () => {
 
       <main className="flex-1 flex overflow-hidden">
         {/* Cards Section */}
-        <div className={`${isChatOpen ? 'w-2/3' : 'w-full'} transition-all duration-300 p-6 px-4 lg:px-8 overflow-y-auto`}>
+        <div className="w-full transition-all duration-300 p-6 px-4 lg:px-8 overflow-y-auto">
           {renderActivePage()}
-        </div>
-
-        {/* Chatbot Section */}
-        <div className={`w-1/3 transition-all duration-300 ease-in-out ${
-          isChatOpen 
-            ? 'opacity-100 translate-x-0' 
-            : 'opacity-0 translate-x-4 hidden'
-        }`}>
-          <div className="h-full bg-white shadow-lg  overflow-hidden">
-            <Chatbot />
-          </div>
         </div>
       </main>
     </div>
