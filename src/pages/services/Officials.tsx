@@ -9,8 +9,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
     <div className="p-6 bg-white rounded-xl shadow-sm">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-4">
-          <button
-            onClick={onBack}
+      <button
+        onClick={onBack}
             className="bg-gray-100 hover:bg-gray-200 p-2 rounded-lg transition-colors duration-200"
           >
              <svg 
@@ -38,7 +38,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
       {/* Officials Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {/* Barangay Chairman */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Juan Dela Cruz.jpg" alt="Hon. Juan Dela Cruz" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">Barangay Chairman</h2>
           <p className="text-gray-600 mt-1">Hon. Juan Dela Cruz</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>

@@ -329,32 +329,29 @@ const Dashboard = () => {
   return (
     <div className="h-screen flex flex-col bg-gray-50">
       {/* Header with Language Selection */}
-      <header className="bg-white shadow-md w-full flex-none">
+      <header className="w-full flex-none bg-[#14274e] shadow-md">
         <nav className="container mx-auto px-4 lg:px-8 py-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-8">
+            <div className="flex items-center space-x-4">
+              <img src='/sigla.png' alt="SIGLA Logo" className="w-16 h-16 rounded-full bg-white/10 object-contain" />
               <div>
-                <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight">
-                   <span className="text-blue-600">Barangay</span> Info Hub
+                <h1 className="text-3xl font-extrabold text-white tracking-tight">
+                  <span className="text-blue-300">Barangay Info Hub</span>
                 </h1>
-                <p className="text-sm text-gray-600 mt-1 font-medium">Making Information Accessible for All</p>
+                <p className="text-sm text-blue-100 mt-1 font-medium">Making Information Accessible for All</p>
               </div>
             </div>
-
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setActivePage('officials')}
-                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-all duration-200 font-medium shadow-sm"
+                className="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-all duration-200 font-medium shadow-sm"
               >
-               
                 Officials
               </button>
-
               <button
                 onClick={toggleChat}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-all duration-200 font-medium shadow-sm"
               >
-                
                 {isChatOpen ? 'Close Assistant' : 'Digital Assistant'}
               </button>
             </div>
