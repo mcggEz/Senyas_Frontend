@@ -81,218 +81,242 @@ const Dashboard = () => {
       
       default:
         return (
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
             {/* Certificates & Permits */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">description</span>
+            <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
+              <div className="relative h-48">
+                <img 
+                  src="https://picsum.photos/seed/government-document/600/400" 
+                  alt="Certificates & Permits" 
+                  className="w-full h-full object-cover" 
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4">
+                    <h3 className="text-2xl font-bold text-white text-center">Certificates & Permits</h3>
                 </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Certificates & Permits</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Request official documents and permits</p>
               </div>
-              <div className="flex-1 flex flex-col justify-end">
+              <div className="p-5 flex-1 flex flex-col justify-between">
+                <p className="text-sm text-gray-600 mb-4">Request official documents and permits quickly and efficiently.</p>
                 <div className="space-y-2.5">
                   <button 
                     onClick={() => setActivePage('barangay-id')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">badge</span>
-                    <span className="truncate">Barangay ID</span>
+                    Barangay ID
                   </button>
                   <button 
                     onClick={() => setActivePage('clearance')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">verified</span>
-                    <span className="truncate">Clearance</span>
+                    Clearance
                   </button>
                   <button 
                     onClick={() => setActivePage('business-permit')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">business</span>
-                    <span className="truncate">Business Permit</span>
+                    Business Permit
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Health Services */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">local_hospital</span>
+            <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
+              <div className="relative h-48">
+                <img 
+                  src="https://picsum.photos/seed/community-health/600/400" 
+                  alt="Health Services" 
+                  className="w-full h-full object-cover" 
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4">
+                    <h3 className="text-2xl font-bold text-white text-center">Health Services</h3>
                 </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Health Services</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Access community health resources</p>
               </div>
-              <div className="flex-1 flex flex-col justify-end">
+              <div className="p-5 flex-1 flex flex-col justify-between">
+                <p className="text-sm text-gray-600 mb-4">Access community health resources and medical assistance programs.</p>
                 <div className="space-y-2.5">
                   <button 
                     onClick={() => setActivePage('vaccination')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">vaccines</span>
-                    <span className="truncate">Vaccination Schedule</span>
+                    Vaccination
                   </button>
                   <button 
                     onClick={() => setActivePage('health-center')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">medical_services</span>
-                    <span className="truncate">Health Center</span>
+                    Health Center
                   </button>
                   <button 
                     onClick={() => setActivePage('medicine')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">medication</span>
-                    <span className="truncate">Medicine Assistance</span>
+                    Medicine
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Social Services */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">diversity_3</span>
+            <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
+              <div className="relative h-48">
+                <img 
+                  src="https://picsum.photos/seed/social-support/600/400" 
+                  alt="Social Services" 
+                  className="w-full h-full object-cover" 
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4">
+                    <h3 className="text-2xl font-bold text-white text-center">Social Services</h3>
                 </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Social Services</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Community support programs</p>
               </div>
-              <div className="flex-1 flex flex-col justify-end">
+              <div className="p-5 flex-1 flex flex-col justify-between">
+                <p className="text-sm text-gray-600 mb-4">Find information on community support programs and assistance.</p>
                 <div className="space-y-2.5">
                   <button 
                     onClick={() => setActivePage('financial-aid')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">volunteer_activism</span>
-                    <span className="truncate">Financial Aid</span>
+                    Financial Aid
                   </button>
                   <button 
                     onClick={() => setActivePage('education')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">school</span>
-                    <span className="truncate">Education Support</span>
+                    Education
                   </button>
                   <button 
                     onClick={() => setActivePage('senior')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">elderly</span>
-                    <span className="truncate">Senior Citizen</span>
+                    Senior Citizen
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Emergency Services */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">emergency</span>
+            <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
+              <div className="relative h-48">
+                <img 
+                  src="https://picsum.photos/seed/emergency-response/600/400" 
+                  alt="Emergency Services" 
+                  className="w-full h-full object-cover" 
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4">
+                    <h3 className="text-2xl font-bold text-white text-center">Emergency Services</h3>
                 </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Emergency Services</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">24/7 emergency assistance</p>
               </div>
-              <div className="flex-1 flex flex-col justify-end">
+              <div className="p-5 flex-1 flex flex-col justify-between">
+                <p className="text-sm text-gray-600 mb-4">Access 24/7 emergency assistance, hotlines, and response teams.</p>
                 <div className="space-y-2.5">
                   <button 
                     onClick={() => setActivePage('hotlines')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">phone_in_talk</span>
-                    <span className="truncate">Emergency Hotlines</span>
+                    Hotlines
                   </button>
                   <button 
                     onClick={() => setActivePage('first-response')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">health_and_safety</span>
-                    <span className="truncate">First Response</span>
+                    First Response
                   </button>
                   <button 
                     onClick={() => setActivePage('disaster')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">flood</span>
-                    <span className="truncate">Disaster Response</span>
+                    Disaster Response
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Community Programs */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">groups</span>
+            <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
+              <div className="relative h-48">
+                <img 
+                  src="https://picsum.photos/seed/community-activities/600/400" 
+                  alt="Community Programs" 
+                  className="w-full h-full object-cover" 
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4">
+                    <h3 className="text-2xl font-bold text-white text-center">Community Programs</h3>
                 </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Community Programs</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Join community activities</p>
               </div>
-              <div className="flex-1 flex flex-col justify-end">
+              <div className="p-5 flex-1 flex flex-col justify-between">
+                <p className="text-sm text-gray-600 mb-4">Join various community events, sports, and job programs.</p>
                 <div className="space-y-2.5">
                   <button 
                     onClick={() => setActivePage('events')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">event</span>
-                    <span className="truncate">Events Calendar</span>
+                    Events
                   </button>
                   <button 
                     onClick={() => setActivePage('sports')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">sports</span>
-                    <span className="truncate">Sports Activities</span>
+                    Sports
                   </button>
                   <button 
                     onClick={() => setActivePage('jobs')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">work</span>
-                    <span className="truncate">Job Programs</span>
+                    Job Programs
                   </button>
                 </div>
               </div>
             </div>
 
             {/* Resident Services */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">account_circle</span>
+            <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
+              <div className="relative h-48">
+                <img 
+                  src="https://picsum.photos/seed/citizen-services/600/400" 
+                  alt="Resident Services" 
+                  className="w-full h-full object-cover" 
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center p-4">
+                    <h3 className="text-2xl font-bold text-white text-center">Resident Services</h3>
                 </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Resident Services</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Access resident information</p>
               </div>
-              <div className="flex-1 flex flex-col justify-end">
+              <div className="p-5 flex-1 flex flex-col justify-between">
+                <p className="text-sm text-gray-600 mb-4">Access resident registration, submit complaints, and resolve disputes.</p>
                 <div className="space-y-2.5">
                   <button 
                     onClick={() => setActivePage('registration')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">how_to_reg</span>
-                    <span className="truncate">Registration</span>
+                    Registration
                   </button>
                   <button 
                     onClick={() => setActivePage('complaints')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">report_problem</span>
-                    <span className="truncate">Complaints</span>
+                    Complaints
                   </button>
                   <button 
                     onClick={() => setActivePage('dispute')}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
                     <span className="material-icons mr-2 text-sm">gavel</span>
-                    <span className="truncate">Dispute Resolution</span>
+                    Dispute Resolution
                   </button>
                 </div>
               </div>
