@@ -22,7 +22,7 @@ import Officials from './services/Officials'
 
 const Dashboard = () => {
   const [isChatOpen, setIsChatOpen] = useState(false)
-  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false)
+
   const [activePage, setActivePage] = useState<string | null>(null)
   const toggleChat = () => setIsChatOpen(!isChatOpen)
 
