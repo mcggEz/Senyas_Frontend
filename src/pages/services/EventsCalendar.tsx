@@ -14,7 +14,20 @@ const EventsCalendar: React.FC<EventsCalendarProps> = ({ onBack }) => {
             onClick={onBack}
             className="bg-gray-100 hover:bg-gray-200 p-2 rounded-lg transition-colors duration-200"
           >
-            <span className="material-icons text-gray-600">arrow_back</span>
+            <svg 
+              className="w-6 h-6 text-gray-600" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24" 
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M10 19l-7-7m0 0l7-7m-7 7h18" 
+              />
+            </svg>
           </button>
           <div>
             <h1 className="text-2xl font-bold text-gray-800">Events Calendar</h1>

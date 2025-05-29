@@ -86,7 +86,7 @@ const Dashboard = () => {
             <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
               <div className="relative h-48">
                 <img 
-                  src="https://picsum.photos/seed/government-document/600/400" 
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" 
                   alt="Certificates & Permits" 
                   className="w-full h-full object-cover" 
                 />
@@ -101,21 +101,21 @@ const Dashboard = () => {
                     onClick={() => setActivePage('barangay-id')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">badge</span>
+            
                     Barangay ID
                   </button>
                   <button 
                     onClick={() => setActivePage('clearance')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">verified</span>
+               
                     Clearance
                   </button>
                   <button 
                     onClick={() => setActivePage('business-permit')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">business</span>
+                  
                     Business Permit
                   </button>
                 </div>
@@ -126,7 +126,7 @@ const Dashboard = () => {
             <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
               <div className="relative h-48">
                 <img 
-                  src="https://picsum.photos/seed/community-health/600/400" 
+                  src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" 
                   alt="Health Services" 
                   className="w-full h-full object-cover" 
                 />
@@ -141,21 +141,21 @@ const Dashboard = () => {
                     onClick={() => setActivePage('vaccination')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">vaccines</span>
+                   
                     Vaccination
                   </button>
                   <button 
                     onClick={() => setActivePage('health-center')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">medical_services</span>
+                   
                     Health Center
                   </button>
                   <button 
                     onClick={() => setActivePage('medicine')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">medication</span>
+                   
                     Medicine
                   </button>
                 </div>
@@ -166,7 +166,7 @@ const Dashboard = () => {
             <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
               <div className="relative h-48">
                 <img 
-                  src="https://picsum.photos/seed/social-support/600/400" 
+                  src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" 
                   alt="Social Services" 
                   className="w-full h-full object-cover" 
                 />
@@ -181,21 +181,21 @@ const Dashboard = () => {
                     onClick={() => setActivePage('financial-aid')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">volunteer_activism</span>
+                 
                     Financial Aid
                   </button>
                   <button 
                     onClick={() => setActivePage('education')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">school</span>
+                  
                     Education
                   </button>
                   <button 
                     onClick={() => setActivePage('senior')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">elderly</span>
+                   
                     Senior Citizen
                   </button>
                 </div>
@@ -206,7 +206,7 @@ const Dashboard = () => {
             <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
               <div className="relative h-48">
                 <img 
-                  src="https://picsum.photos/seed/emergency-response/600/400" 
+                  src="https://pbs.twimg.com/media/E1csx_tVIAQVM2e?format=jpg&name=large" 
                   alt="Emergency Services" 
                   className="w-full h-full object-cover" 
                 />
@@ -221,21 +221,21 @@ const Dashboard = () => {
                     onClick={() => setActivePage('hotlines')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">phone_in_talk</span>
+                   
                     Hotlines
                   </button>
                   <button 
                     onClick={() => setActivePage('first-response')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">health_and_safety</span>
+                   
                     First Response
                   </button>
                   <button 
                     onClick={() => setActivePage('disaster')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">flood</span>
+                    
                     Disaster Response
                   </button>
                 </div>
@@ -246,7 +246,7 @@ const Dashboard = () => {
             <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
               <div className="relative h-48">
                 <img 
-                  src="https://picsum.photos/seed/community-activities/600/400" 
+                  src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" 
                   alt="Community Programs" 
                   className="w-full h-full object-cover" 
                 />
@@ -261,21 +261,21 @@ const Dashboard = () => {
                     onClick={() => setActivePage('events')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">event</span>
+                    
                     Events
                   </button>
                   <button 
                     onClick={() => setActivePage('sports')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">sports</span>
+                    
                     Sports
                   </button>
                   <button 
                     onClick={() => setActivePage('jobs')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">work</span>
+                   
                     Job Programs
                   </button>
                 </div>
@@ -286,7 +286,7 @@ const Dashboard = () => {
             <div className="bg-white rounded-xl shadow-sm transition-all duration-300 ease-in-out hover:shadow-lg flex flex-col overflow-hidden">
               <div className="relative h-48">
                 <img 
-                  src="https://picsum.photos/seed/citizen-services/600/400" 
+                  src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=400&q=80" 
                   alt="Resident Services" 
                   className="w-full h-full object-cover" 
                 />
@@ -301,21 +301,21 @@ const Dashboard = () => {
                     onClick={() => setActivePage('registration')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">how_to_reg</span>
+                    
                     Registration
                   </button>
                   <button 
                     onClick={() => setActivePage('complaints')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">report_problem</span>
+                   
                     Complaints
                   </button>
                   <button 
                     onClick={() => setActivePage('dispute')}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
                   >
-                    <span className="material-icons mr-2 text-sm">gavel</span>
+                 
                     Dispute Resolution
                   </button>
                 </div>
@@ -327,15 +327,15 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-gray-100">
+    <div className="h-screen flex flex-col bg-gray-50">
       {/* Header with Language Selection */}
-      <header className="bg-white shadow-lg w-full flex-none">
-        <nav className="container mx-auto pl-8 lg:pl-16 py-5">
-          <div className="flex justify-between items-center pr-8 lg:pr-16">
+      <header className="bg-white shadow-md w-full flex-none">
+        <nav className="container mx-auto px-4 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
             <div className="flex items-center space-x-8">
               <div>
                 <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight">
-                  <span className="text-blue-600">Barangay</span> Info Hub
+                   <span className="text-blue-600">Barangay</span> Info Hub
                 </h1>
                 <p className="text-sm text-gray-600 mt-1 font-medium">Making Information Accessible for All</p>
               </div>
@@ -344,59 +344,27 @@ const Dashboard = () => {
             <div className="flex items-center space-x-4">
               <button
                 onClick={() => setActivePage('officials')}
-                className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-colors duration-200 font-medium"
+                className="bg-gray-100 hover:bg-gray-200 text-gray-700 px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-all duration-200 font-medium shadow-sm"
               >
-      
-                <span>Officials</span>
+               
+                Officials
               </button>
 
               <button
                 onClick={toggleChat}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-colors duration-200 font-medium"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-all duration-200 font-medium shadow-sm"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
-                </svg>
-                <span>{isChatOpen ? 'Close Assistant' : 'Digital Assistant'}</span>
+                
+                {isChatOpen ? 'Close Assistant' : 'Digital Assistant'}
               </button>
-
-              <div className="relative">
-                <button
-                  onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
-                  className="flex items-center space-x-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 px-4 py-2.5 hover:bg-gray-100 transition-colors duration-200 font-medium"
-                >
-                  <span>English</span>
-                  <svg
-                    className={`w-4 h-4 transition-transform duration-200 ${isLangDropdownOpen ? 'transform rotate-180' : ''}`}
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                </button>
-
-                {isLangDropdownOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-10 border border-gray-100">
-                    <a href="#" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">English</a>
-                    <a href="#" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">Tagalog</a>
-                    <a href="#" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">Cebuano</a>
-                    <a href="#" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">Ilocano</a>
-                  </div>
-                )}
-              </div>
             </div>
           </div>
         </nav>
       </header>
 
-      {/* Main Content */}
       <main className="flex-1 flex overflow-hidden">
         {/* Cards Section */}
-        <div className={`${isChatOpen ? 'w-2/3' : 'w-full'} transition-all duration-300 p-6 px-8 lg:px-16 overflow-y-auto`}>
+        <div className={`${isChatOpen ? 'w-2/3' : 'w-full'} transition-all duration-300 p-6 px-4 lg:px-8 overflow-y-auto`}>
           {renderActivePage()}
         </div>
 
@@ -406,7 +374,7 @@ const Dashboard = () => {
             ? 'opacity-100 translate-x-0' 
             : 'opacity-0 translate-x-4 hidden'
         }`}>
-          <div className="h-full">
+          <div className="h-full bg-white shadow-lg  overflow-hidden">
             <Chatbot />
           </div>
         </div>
