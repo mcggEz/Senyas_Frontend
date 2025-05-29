@@ -15,12 +15,8 @@ The Sigla App is a proof-of-concept barangay information and service system feat
 - Dialogflow CX / ES (as the conversational platform, powered by Vertex AI)
 
 #### Programming Languages
-- JavaScript / TypeScript (Frontend)
+- TypeScript (Frontend)
 
-#### Cloud Services
-- Google Cloud Platform (GCP)
-  - Vertex AI (AI Model Hosting & Management)
-  - Dialogflow (Conversational AI Platform)
 
 ## ✨ Key Features
 
@@ -42,11 +38,3 @@ The Sigla App is a proof-of-concept barangay information and service system feat
 - Focused on leveraging Google's cutting-edge AI services, specifically Vertex AI, to power the conversational interface
 
 
-## Features
-
-- Text message processing
-- Voice message handling
-- Video message support (for ASL)
-- File upload functionality
-- CORS enabled for frontend integration
-- Static file serving for uploaded files
