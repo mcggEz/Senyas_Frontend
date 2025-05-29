@@ -1,148 +1,253 @@
-// Import necessary hooks from React
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
+import Chatbot from '../components/Chatbot'
 
-// Define the Dashboard component
 const Dashboard = () => {
-  // Create a reference to the video element
-  const videoRef = useRef<HTMLVideoElement>(null)
-  // State to track if the camera is streaming
-  const [isStreaming, setIsStreaming] = useState(false)
+  const [isChatOpen, setIsChatOpen] = useState(false)
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false)
+  const toggleChat = () => setIsChatOpen(!isChatOpen)
 
-  // Function to start the camera
-  const startCamera = async () => {
-    try {
-      // Request access to the user's webcam
-      const stream = await navigator.mediaDevices.getUserMedia({ 
-        video: true,
-        audio: false
-      })
-      
-      // If the video element is available, set its source to the webcam stream
-      if (videoRef.current) {
-        videoRef.current.srcObject = stream
-        setIsStreaming(true) // Update the state to indicate streaming has started
-      }
-    } catch (err) {
-      // Handle errors (e.g., user denies access to the webcam)
-      console.error("Error accessing webcam:", err)
-      alert("Could not access webcam")
-    }
-  }
-
-  // Function to stop the camera
-  const stopCamera = () => {
-    // Check if the video element and its source are available
-    if (videoRef.current && videoRef.current.srcObject) {
-      // Stop all tracks of the media stream
-      const tracks = (videoRef.current.srcObject as MediaStream).getTracks()
-      tracks.forEach(track => track.stop())
-      videoRef.current.srcObject = null // Clear the video source
-      setIsStreaming(false) // Update the state to indicate streaming has stopped
-    }
-  }
-
-  // Effect to clean up the camera stream when the component unmounts
-  useEffect(() => {
-    return () => {
-      stopCamera() // Stop the camera when the component is removed
-    }
-  }, [])
-
-  // Render the component
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header section */}
-      <header className="bg-white shadow">
-        <div className="container mx-auto px-6 py-4">
-          <h1 className="text-2xl font-bold text-gray-800">Sign Language Translator</h1>
-        </div>
+    <div className="h-screen flex flex-col bg-gray-100">
+      {/* Header with Language Selection */}
+      <header className="bg-white shadow-lg w-full flex-none">
+        <nav className="container mx-auto pl-8 lg:pl-16 py-5">
+          <div className="flex justify-between items-center pr-8 lg:pr-16">
+            <div className="flex items-center space-x-8">
+              <div>
+                <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight">
+                  <span className="text-blue-600">Barangay</span> Info Hub
+                </h1>
+                <p className="text-sm text-gray-600 mt-1 font-medium">Making Information Accessible for All</p>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <button
+                onClick={toggleChat}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-colors duration-200 font-medium"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
+                </svg>
+                <span>{isChatOpen ? 'Close Assistant' : 'Digital Assistant'}</span>
+              </button>
+
+              <div className="relative">
+                <button
+                  onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+                  className="flex items-center space-x-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 px-4 py-2.5 hover:bg-gray-100 transition-colors duration-200 font-medium"
+                >
+                  <span>English</span>
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${isLangDropdownOpen ? 'transform rotate-180' : ''}`}
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+
+                {isLangDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-10 border border-gray-100">
+                    <a href="#" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">English</a>
+                    <a href="#" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">Tagalog</a>
+                    <a href="#" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">Cebuano</a>
+                    <a href="#" className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200">Ilocano</a>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </nav>
       </header>
 
-      {/* Main content area with a split view for camera and text output */}
-      <div className="container mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Left side: Camera view */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4">Camera Input</h2>
-            <div className="aspect-video bg-gray-800 rounded-lg mb-4 overflow-hidden">
-              {/* Video element to display the webcam feed */}
-              <video
-                ref={videoRef}
-                autoPlay
-                playsInline
-                muted
-                className="w-full h-full object-cover"
-              />
+      {/* Main Content */}
+      <main className="flex-1 flex overflow-hidden">
+        {/* Cards Section */}
+        <div className={`${isChatOpen ? 'w-2/3' : 'w-full'} transition-all duration-300 p-6 px-8 lg:px-16 overflow-y-auto`}>
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+            {/* Certificates & Permits */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">description</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Certificates & Permits</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Request official documents and permits</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center">
+                    <span className="material-icons mr-2 text-sm">badge</span>
+                    <span className="truncate">Barangay ID</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center">
+                    <span className="material-icons mr-2 text-sm">verified</span>
+                    <span className="truncate">Clearance</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center">
+                    <span className="material-icons mr-2 text-sm">business</span>
+                    <span className="truncate">Business Permit</span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="flex space-x-4">
-              {/* Button to start the camera */}
-              <button 
-                onClick={startCamera}
-                disabled={isStreaming}
-                className={`px-4 py-2 rounded-lg ${
-                  isStreaming 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-blue-500 hover:bg-blue-600'
-                } text-white`}
-              >
-                Start Camera
-              </button>
-              {/* Button to stop the camera */}
-              <button 
-                onClick={stopCamera}
-                disabled={!isStreaming}
-                className={`px-4 py-2 rounded-lg ${
-                  !isStreaming 
-                    ? 'bg-gray-400 cursor-not-allowed' 
-                    : 'bg-red-500 hover:bg-red-600'
-                } text-white`}
-              >
-                Stop Camera
-              </button>
-            </div>
-          </div>
 
-          {/* Right side: Text output */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <h2 className="text-xl font-semibold mb-4">Generated Text</h2>
-            <div className="h-[300px] bg-gray-50 rounded-lg p-4 mb-4 overflow-y-auto">
-              {/* Placeholder for translated text */}
-              <p className="text-gray-600">
-                Translated text will appear here in real-time...
-              </p>
+            {/* Health Services */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">local_hospital</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Health Services</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Access community health resources</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">vaccines</span>
+                    <span className="truncate">Vaccination Schedule</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">medical_services</span>
+                    <span className="truncate">Health Center</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">medication</span>
+                    <span className="truncate">Medicine Assistance</span>
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="flex space-x-4">
-              {/* Button to copy the translated text */}
-              <button className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg">
-                Copy Text
-              </button>
-              {/* Button to clear the translated text */}
-              <button className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg">
-                Clear
-              </button>
+
+            {/* Social Services */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">diversity_3</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Social Services</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Community support programs</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">volunteer_activism</span>
+                    <span className="truncate">Financial Aid</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">school</span>
+                    <span className="truncate">Education Support</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">elderly</span>
+                    <span className="truncate">Senior Citizen</span>
+                  </button>
+                </div>
+              </div>
             </div>
+
+            {/* Emergency Services */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">emergency</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Emergency Services</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">24/7 emergency assistance</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">phone_in_talk</span>
+                    <span className="truncate">Emergency Hotlines</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">health_and_safety</span>
+                    <span className="truncate">First Response</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">flood</span>
+                    <span className="truncate">Disaster Response</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Community Programs */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">groups</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Community Programs</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Join community activities</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">event</span>
+                    <span className="truncate">Events Calendar</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">sports</span>
+                    <span className="truncate">Sports Activities</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">work</span>
+                    <span className="truncate">Job Programs</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Resident Services */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">account_circle</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Resident Services</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Access resident information</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">how_to_reg</span>
+                    <span className="truncate">Registration</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">report_problem</span>
+                    <span className="truncate">Complaints</span>
+                  </button>
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
+                    <span className="material-icons mr-2 text-sm">gavel</span>
+                    <span className="truncate">Dispute Resolution</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        {/* Section for displaying recent translations */}
-        <div className="mt-8 bg-white rounded-lg shadow p-6">
-          <h2 className="text-xl font-semibold mb-4">Recent Translations</h2>
-          <div className="space-y-4">
-            {/* Example of a recent translation item */}
-            <div className="p-4 bg-gray-50 rounded-lg">
-              <p className="text-gray-800">Hello, how are you?</p>
-              <p className="text-sm text-gray-500 mt-1">2 minutes ago</p>
-            </div>
-            <div className="p-4 bg-gray-50 rounded-lg">
-              <p className="text-gray-800">Thank you</p>
-              <p className="text-sm text-gray-500 mt-1">5 minutes ago</p>
-            </div>
+        {/* Chatbot Section */}
+        <div className={`w-1/3 transition-all duration-300 ease-in-out ${
+          isChatOpen 
+            ? 'opacity-100 translate-x-0' 
+            : 'opacity-0 translate-x-4 hidden'
+        }`}>
+          <div className="h-full">
+            <Chatbot />
           </div>
         </div>
-      </div>
+      </main>
     </div>
   )
 }
 
-// Export the Dashboard component as the default export
 export default Dashboard
