@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import BarangayID from './services/BarangayID'
 import Clearance from './services/Clearance'
@@ -19,12 +19,128 @@ import Registration from './services/Registration'
 import Complaints from './services/Complaints'
 import DisputeResolution from './services/DisputeResolution'
 import Officials from './services/Officials'
+import { sendMessage, initializeChatSession } from '../services/chatService'
+import type { ChatMessage } from '../services/chatService'
 
 const Dashboard = () => {
- 
-
   const [activePage, setActivePage] = useState<string | null>(null)
+  const [messages, setMessages] = useState<ChatMessage[]>([])
+  const [inputMessage, setInputMessage] = useState('')
+  const [showChatbot, setShowChatbot] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isListening, setIsListening] = useState(false)
   
+  useEffect(() => {
+    // Initialize chat session when component mounts
+    initializeChatSession()
+  }, [])
+
+  const startVoiceInput = () => {
+    if (!('webkitSpeechRecognition' in window)) {
+      alert('Voice input is not supported in your browser. Please use Chrome or Edge.');
+      return;
+    }
+
+    const recognition = new (window as any).webkitSpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = 'en-US';
+
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    recognition.onend = () => {
+      setIsListening(false);
+    };
+
+    recognition.onresult = async (event: any) => {
+      const transcript = event.results[0][0].transcript;
+      setInputMessage(transcript);
+      
+      // Add user voice message
+      const userMessage: ChatMessage = {
+        id: Date.now(),
+        text: transcript,
+        sender: 'user',
+        timestamp: new Date(),
+        type: 'voice'
+      };
+      
+      setMessages(prev => [...prev, userMessage]);
+      setIsLoading(true);
+
+      try {
+        // Send voice message to backend
+        const botResponse = await sendMessage(transcript, 'voice');
+        setMessages(prev => [...prev, botResponse]);
+      } catch (error) {
+        console.error('Error in voice chat:', error);
+        const errorMessage: ChatMessage = {
+          id: Date.now(),
+          text: 'Sorry, I encountered an error processing your voice message.',
+          sender: 'bot',
+          timestamp: new Date(),
+          type: 'text'
+        };
+        setMessages(prev => [...prev, errorMessage]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    recognition.onerror = (event: any) => {
+      console.error('Speech recognition error:', event.error);
+      setIsListening(false);
+      const errorMessage: ChatMessage = {
+        id: Date.now(),
+        text: 'Voice recognition error. Please try again.',
+        sender: 'bot',
+        timestamp: new Date(),
+        type: 'text'
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    };
+
+    recognition.start();
+  };
+
+  const handleSendMessage = async () => {
+    if (inputMessage.trim() && !isLoading) {
+      try {
+        setIsLoading(true)
+        
+        // Add user message to chat
+        const userMessage: ChatMessage = {
+          id: Date.now(),
+          text: inputMessage,
+          sender: 'user',
+          timestamp: new Date(),
+          type: 'text'
+        }
+        setMessages(prev => [...prev, userMessage])
+        setInputMessage('')
+
+        // Send message to API and get response
+        const botResponse = await sendMessage(inputMessage)
+        setMessages(prev => [...prev, botResponse])
+      } catch (error) {
+        console.error('Error in chat:', error)
+        // Add error message to chat
+        const errorMessage: ChatMessage = {
+          id: Date.now(),
+          text: 'Sorry, I encountered an error. Please try again.',
+          sender: 'bot',
+          timestamp: new Date(),
+          type: 'text'
+        }
+        setMessages(prev => [...prev, errorMessage])
+      } finally {
+        setIsLoading(false)
+      }
+    }
+  }
+
   const renderActivePage = () => {
     switch (activePage) {
       // Certificates & Permits
@@ -342,6 +458,15 @@ const Dashboard = () => {
             </div>
             <div className="flex items-center space-x-4">
               <button
+                onClick={() => setShowChatbot(!showChatbot)}
+                className="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-all duration-200 font-medium shadow-sm"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clipRule="evenodd" />
+                </svg>
+                <span>{showChatbot ? 'Hide Chat' : 'Show Chat'}</span>
+              </button>
+              <button
                 onClick={() => setActivePage('officials')}
                 className="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-all duration-200 font-medium shadow-sm"
               >
@@ -353,10 +478,108 @@ const Dashboard = () => {
       </header>
 
       <main className="flex-1 flex overflow-hidden">
-        {/* Cards Section */}
-        <div className="w-full transition-all duration-300 p-6 px-4 lg:px-8 overflow-y-auto">
+        {/* Services Section (2/3 width when chatbot is visible, full width when hidden) */}
+        <div className={`transition-all duration-300 p-6 px-4 lg:px-8 overflow-y-auto ${showChatbot ? 'w-2/3' : 'w-full'}`}>
           {renderActivePage()}
         </div>
+
+        {/* Chatbot Section (1/3 width, hidden when showChatbot is false) */}
+        {showChatbot && (
+          <div className="w-1/3 border-l border-gray-200 bg-white flex flex-col">
+            {/* Chat Header */}
+            <div className="p-4 border-b border-gray-200 bg-[#3b82f6]">
+              <h2 className="text-lg font-semibold text-white">AI Assistant</h2>
+              <p className="text-sm text-blue-100">Ask me anything about barangay services</p>
+            </div>
+
+            {/* Chat Messages */}
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+              {messages.map((message) => (
+                <div
+                  key={message.id}
+                  className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[80%] rounded-lg p-3 ${
+                      message.sender === 'user'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 text-gray-800'
+                    }`}
+                  >
+                    {message.text}
+                    {message.mediaUrl && (
+                      <div className="mt-2">
+                        {message.type === 'voice' && (
+                          <audio controls src={message.mediaUrl} className="w-full" />
+                        )}
+                        {message.type === 'video' && (
+                          <video controls src={message.mediaUrl} className="w-full rounded" />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="bg-gray-100 text-gray-800 rounded-lg p-3">
+                    <div className="flex space-x-2">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100" />
+                      <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200" />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Chat Input */}
+            <div className="p-4 border-t border-gray-200">
+              <div className="flex space-x-2">
+                <button
+                  onClick={startVoiceInput}
+                  disabled={isLoading || isListening}
+                  className={`p-2 rounded-lg transition-colors duration-200 ${
+                    isListening 
+                      ? 'bg-red-500 hover:bg-red-600 text-white' 
+                      : 'bg-gray-100 hover:bg-gray-200 text-gray-600'
+                  }`}
+                >
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className="h-6 w-6" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth={2} 
+                      d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" 
+                    />
+                  </svg>
+                </button>
+                <input
+                  type="text"
+                  value={inputMessage}
+                  onChange={(e) => setInputMessage(e.target.value)}
+                  onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSendMessage()}
+                  placeholder={isListening ? "Listening..." : "Type your message..."}
+                  disabled={isLoading || isListening}
+                  className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                />
+                <button
+                  onClick={handleSendMessage}
+                  disabled={isLoading || isListening}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 disabled:bg-blue-400 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? 'Sending...' : 'Send'}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   )
