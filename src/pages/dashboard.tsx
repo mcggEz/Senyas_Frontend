@@ -1,10 +1,302 @@
 import { useState } from 'react'
 import Chatbot from '../components/Chatbot'
+import BarangayID from './services/BarangayID'
+import Clearance from './services/Clearance'
+import BusinessPermit from './services/BusinessPermit'
+import VaccinationSchedule from './services/VaccinationSchedule'
+import HealthCenter from './services/HealthCenter'
+import MedicineAssistance from './services/MedicineAssistance'
+import FinancialAid from './services/FinancialAid'
+import EducationSupport from './services/EducationSupport'
+import SeniorCitizen from './services/SeniorCitizen'
+import EmergencyHotlines from './services/EmergencyHotlines'
+import FirstResponse from './services/FirstResponse'
+import DisasterResponse from './services/DisasterResponse'
+import EventsCalendar from './services/EventsCalendar'
+import SportsActivities from './services/SportsActivities'
+import JobOpportunities from './services/JobOpportunities'
+import Registration from './services/Registration'
+import Complaints from './services/Complaints'
+import DisputeResolution from './services/DisputeResolution'
 
 const Dashboard = () => {
   const [isChatOpen, setIsChatOpen] = useState(false)
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false)
+  const [activePage, setActivePage] = useState<string | null>(null)
   const toggleChat = () => setIsChatOpen(!isChatOpen)
+
+  const renderActivePage = () => {
+    switch (activePage) {
+      // Certificates & Permits
+      case 'barangay-id':
+        return <BarangayID onBack={() => setActivePage(null)} />
+      case 'clearance':
+        return <Clearance onBack={() => setActivePage(null)} />
+      case 'business-permit':
+        return <BusinessPermit onBack={() => setActivePage(null)} />
+      
+      // Health Services
+      case 'vaccination':
+        return <VaccinationSchedule onBack={() => setActivePage(null)} />
+      case 'health-center':
+        return <HealthCenter onBack={() => setActivePage(null)} />
+      case 'medicine':
+        return <MedicineAssistance onBack={() => setActivePage(null)} />
+      
+      // Social Services
+      case 'financial-aid':
+        return <FinancialAid onBack={() => setActivePage(null)} />
+      case 'education':
+        return <EducationSupport onBack={() => setActivePage(null)} />
+      case 'senior':
+        return <SeniorCitizen onBack={() => setActivePage(null)} />
+      
+      // Emergency Services
+      case 'hotlines':
+        return <EmergencyHotlines onBack={() => setActivePage(null)} />
+      case 'first-response':
+        return <FirstResponse onBack={() => setActivePage(null)} />
+      case 'disaster':
+        return <DisasterResponse onBack={() => setActivePage(null)} />
+      
+      // Community Programs
+      case 'events':
+        return <EventsCalendar onBack={() => setActivePage(null)} />
+      case 'sports':
+        return <SportsActivities onBack={() => setActivePage(null)} />
+      case 'jobs':
+        return <JobOpportunities onBack={() => setActivePage(null)} />
+      
+      // Resident Services
+      case 'registration':
+        return <Registration onBack={() => setActivePage(null)} />
+      case 'complaints':
+        return <Complaints onBack={() => setActivePage(null)} />
+      case 'dispute':
+        return <DisputeResolution onBack={() => setActivePage(null)} />
+      
+      default:
+        return (
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+            {/* Certificates & Permits */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">description</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Certificates & Permits</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Request official documents and permits</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button 
+                    onClick={() => setActivePage('barangay-id')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
+                  >
+                    <span className="material-icons mr-2 text-sm">badge</span>
+                    <span className="truncate">Barangay ID</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('clearance')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
+                  >
+                    <span className="material-icons mr-2 text-sm">verified</span>
+                    <span className="truncate">Clearance</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('business-permit')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center"
+                  >
+                    <span className="material-icons mr-2 text-sm">business</span>
+                    <span className="truncate">Business Permit</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Health Services */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">local_hospital</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Health Services</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Access community health resources</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button 
+                    onClick={() => setActivePage('vaccination')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">vaccines</span>
+                    <span className="truncate">Vaccination Schedule</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('health-center')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">medical_services</span>
+                    <span className="truncate">Health Center</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('medicine')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">medication</span>
+                    <span className="truncate">Medicine Assistance</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Social Services */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">diversity_3</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Social Services</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Community support programs</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button 
+                    onClick={() => setActivePage('financial-aid')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">volunteer_activism</span>
+                    <span className="truncate">Financial Aid</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('education')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">school</span>
+                    <span className="truncate">Education Support</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('senior')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">elderly</span>
+                    <span className="truncate">Senior Citizen</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Emergency Services */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">emergency</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Emergency Services</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">24/7 emergency assistance</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button 
+                    onClick={() => setActivePage('hotlines')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">phone_in_talk</span>
+                    <span className="truncate">Emergency Hotlines</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('first-response')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">health_and_safety</span>
+                    <span className="truncate">First Response</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('disaster')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">flood</span>
+                    <span className="truncate">Disaster Response</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Community Programs */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">groups</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Community Programs</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Join community activities</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button 
+                    onClick={() => setActivePage('events')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">event</span>
+                    <span className="truncate">Events Calendar</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('sports')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">sports</span>
+                    <span className="truncate">Sports Activities</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('jobs')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">work</span>
+                    <span className="truncate">Job Programs</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Resident Services */}
+            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
+              <div className="flex-none">
+                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
+                  <span className="material-icons text-blue-600 text-2xl">account_circle</span>
+                </div>
+                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Resident Services</h3>
+                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Access resident information</p>
+              </div>
+              <div className="flex-1 flex flex-col justify-end">
+                <div className="space-y-2.5">
+                  <button 
+                    onClick={() => setActivePage('registration')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">how_to_reg</span>
+                    <span className="truncate">Registration</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('complaints')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">report_problem</span>
+                    <span className="truncate">Complaints</span>
+                  </button>
+                  <button 
+                    onClick={() => setActivePage('dispute')}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300"
+                  >
+                    <span className="material-icons mr-2 text-sm">gavel</span>
+                    <span className="truncate">Dispute Resolution</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+    }
+  }
 
   return (
     <div className="h-screen flex flex-col bg-gray-100">
@@ -69,170 +361,7 @@ const Dashboard = () => {
       <main className="flex-1 flex overflow-hidden">
         {/* Cards Section */}
         <div className={`${isChatOpen ? 'w-2/3' : 'w-full'} transition-all duration-300 p-6 px-8 lg:px-16 overflow-y-auto`}>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-            {/* Certificates & Permits */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">description</span>
-                </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Certificates & Permits</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Request official documents and permits</p>
-              </div>
-              <div className="flex-1 flex flex-col justify-end">
-                <div className="space-y-2.5">
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center">
-                    <span className="material-icons mr-2 text-sm">badge</span>
-                    <span className="truncate">Barangay ID</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center">
-                    <span className="material-icons mr-2 text-sm">verified</span>
-                    <span className="truncate">Clearance</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300 flex items-center justify-center">
-                    <span className="material-icons mr-2 text-sm">business</span>
-                    <span className="truncate">Business Permit</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Health Services */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">local_hospital</span>
-                </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Health Services</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Access community health resources</p>
-              </div>
-              <div className="flex-1 flex flex-col justify-end">
-                <div className="space-y-2.5">
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">vaccines</span>
-                    <span className="truncate">Vaccination Schedule</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">medical_services</span>
-                    <span className="truncate">Health Center</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">medication</span>
-                    <span className="truncate">Medicine Assistance</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Social Services */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">diversity_3</span>
-                </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Social Services</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Community support programs</p>
-              </div>
-              <div className="flex-1 flex flex-col justify-end">
-                <div className="space-y-2.5">
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">volunteer_activism</span>
-                    <span className="truncate">Financial Aid</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">school</span>
-                    <span className="truncate">Education Support</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">elderly</span>
-                    <span className="truncate">Senior Citizen</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Emergency Services */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">emergency</span>
-                </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Emergency Services</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">24/7 emergency assistance</p>
-              </div>
-              <div className="flex-1 flex flex-col justify-end">
-                <div className="space-y-2.5">
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">phone_in_talk</span>
-                    <span className="truncate">Emergency Hotlines</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">health_and_safety</span>
-                    <span className="truncate">First Response</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">flood</span>
-                    <span className="truncate">Disaster Response</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Community Programs */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">groups</span>
-                </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Community Programs</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Join community activities</p>
-              </div>
-              <div className="flex-1 flex flex-col justify-end">
-                <div className="space-y-2.5">
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">event</span>
-                    <span className="truncate">Events Calendar</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">sports</span>
-                    <span className="truncate">Sports Activities</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">work</span>
-                    <span className="truncate">Job Programs</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Resident Services */}
-            <div className="bg-white rounded-xl shadow-sm p-5 transition-all duration-300 ease-in-out hover:shadow-md flex flex-col">
-              <div className="flex-none">
-                <div className="flex items-center justify-center w-14 h-14 bg-blue-100 rounded-full mb-4 mx-auto">
-                  <span className="material-icons text-blue-600 text-2xl">account_circle</span>
-                </div>
-                <h3 className="text-lg font-bold text-center text-gray-800 mb-3">Resident Services</h3>
-                <p className="text-sm text-gray-600 text-center mb-4 hidden sm:block">Access resident information</p>
-              </div>
-              <div className="flex-1 flex flex-col justify-end">
-                <div className="space-y-2.5">
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">how_to_reg</span>
-                    <span className="truncate">Registration</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">report_problem</span>
-                    <span className="truncate">Complaints</span>
-                  </button>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 px-4 rounded-lg text-sm font-medium transition-colors duration-300">
-                    <span className="material-icons mr-2 text-sm">gavel</span>
-                    <span className="truncate">Dispute Resolution</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-          </div>
+          {renderActivePage()}
         </div>
 
         {/* Chatbot Section */}

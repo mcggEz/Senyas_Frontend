@@ -20,6 +20,7 @@ const Chatbot = () => {
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isListening, setIsListening] = useState(false);
+  const [isASLActive, setIsASLActive] = useState(false);
 
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
@@ -65,6 +66,15 @@ const Chatbot = () => {
     }
   };
 
+  const handleASLToggle = () => {
+    setIsASLActive(!isASLActive);
+    // Here you would typically initialize your ASL recognition system
+    if (!isASLActive) {
+      // Start ASL recognition
+      alert('ASL recognition feature coming soon! This will enable sign language interaction.');
+    }
+  };
+
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputMessage.trim()) return;
@@ -93,13 +103,11 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm h-full flex flex-col">
+    <div className="bg-white  shadow-sm h-full flex flex-col">
       {/* Header */}
       <div className="p-4 border-b border-gray-200 flex-none">
         <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-  
-          </div>
+       
           <div>
             <h3 className="font-semibold text-gray-800">Digital Assistant</h3>
             <p className="text-sm text-gray-500">Ask specific questions about our community</p>
@@ -148,13 +156,25 @@ const Chatbot = () => {
           />
           <button
             type="button"
+            onClick={handleASLToggle}
+            className={`${
+              isASLActive ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-600 hover:bg-blue-700'
+            } text-white rounded-lg px-4 py-2 transition-colors duration-200 flex items-center justify-center`}
+            title="American Sign Language"
+          >
+            <span className="material-icons text-xl">
+           ASL
+            </span>
+          </button>
+          <button
+            type="button"
             onClick={handleVoiceInput}
             className={`${
               isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-600 hover:bg-blue-700'
             } text-white rounded-lg px-4 py-2 transition-colors duration-200 flex items-center justify-center`}
           >
             <span className="material-icons text-xl">
-              {isListening ? 'mic' : 'mic_none'}
+          Mic
             </span>
           </button>
           <button
