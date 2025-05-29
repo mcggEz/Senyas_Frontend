@@ -1,16 +1,18 @@
 import { useState, useRef, useEffect } from 'react'
+import { sendMessage, type ChatMessage } from '../services/chatService';
 
-interface Message {
-  id: number;
-  text: string;
-  sender: 'user' | 'bot';
-  timestamp: Date;
+// Extend the Window interface to include SpeechRecognition properties
+interface CustomWindow extends Window {
+  webkitSpeechRecognition: any;
+  SpeechRecognition: any;
 }
+
+declare let window: CustomWindow;
 
 const Chatbot = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const [messages, setMessages] = useState<Message[]>([
+  const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: 1,
       text: "Hello! I'm your Barangay Info Hub assistant. How can I help you today?",
@@ -21,6 +23,7 @@ const Chatbot = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [isASLActive, setIsASLActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
@@ -46,12 +49,12 @@ const Chatbot = () => {
         setIsListening(true);
       };
 
-      recognition.onresult = (event) => {
+      recognition.onresult = (event: any) => {
         const transcript = event.results[0][0].transcript;
         setInputMessage(transcript);
       };
 
-      recognition.onerror = (event) => {
+      recognition.onerror = (event: any) => {
         console.error('Speech recognition error:', event.error);
         setIsListening(false);
       };
@@ -75,31 +78,38 @@ const Chatbot = () => {
     }
   };
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!inputMessage.trim()) return;
+    if (!inputMessage.trim() || isLoading) return;
 
     // Add user message
-    const newMessage: Message = {
-      id: messages.length + 1,
+    const userMessage: ChatMessage = {
+      id: Date.now(),
       text: inputMessage,
       sender: 'user',
       timestamp: new Date()
     };
 
-    setMessages(prev => [...prev, newMessage]);
+    setMessages(prev => [...prev, userMessage]);
     setInputMessage('');
+    setIsLoading(true);
 
-    // Simulate bot response
-    setTimeout(() => {
-      const botResponse: Message = {
-        id: messages.length + 2,
-        text: "I'm processing your request. This is a demo response.",
+    try {
+      // Get bot response from backend
+      const botResponse = await sendMessage(inputMessage.trim());
+      setMessages(prev => [...prev, botResponse]);
+    } catch (error) {
+      // Handle error with a user-friendly message
+      const errorMessage: ChatMessage = {
+        id: Date.now(),
+        text: "I'm sorry, I'm having trouble connecting to the server. Please try again later.",
         sender: 'bot',
         timestamp: new Date()
       };
-      setMessages(prev => [...prev, botResponse]);
-    }, 1000);
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -141,6 +151,17 @@ const Chatbot = () => {
             </div>
           </div>
         ))}
+        {isLoading && (
+          <div className="flex justify-start">
+            <div className="bg-gray-100 text-gray-800 rounded-2xl rounded-bl-none px-4 py-2">
+              <div className="flex space-x-2">
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100"></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200"></div>
+              </div>
+            </div>
+          </div>
+        )}
         <div ref={messagesEndRef} />
       </div>
 
@@ -153,6 +174,7 @@ const Chatbot = () => {
             onChange={(e) => setInputMessage(e.target.value)}
             placeholder="Type your message..."
             className="flex-1 border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            disabled={isLoading}
           />
           <button
             type="button"
@@ -161,10 +183,9 @@ const Chatbot = () => {
               isASLActive ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-600 hover:bg-blue-700'
             } text-white rounded-lg px-4 py-2 transition-colors duration-200 flex items-center justify-center`}
             title="American Sign Language"
+            disabled={isLoading}
           >
-            <span className="material-icons text-xl">
-           ASL
-            </span>
+            <span className="material-icons text-xl">sign_language</span>
           </button>
           <button
             type="button"
@@ -172,14 +193,14 @@ const Chatbot = () => {
             className={`${
               isListening ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-600 hover:bg-blue-700'
             } text-white rounded-lg px-4 py-2 transition-colors duration-200 flex items-center justify-center`}
+            disabled={isLoading}
           >
-            <span className="material-icons text-xl">
-          Mic
-            </span>
+            <span className="material-icons text-xl">mic</span>
           </button>
           <button
             type="submit"
-            className="bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center"
+            className="bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-700 transition-colors duration-200 flex items-center justify-center disabled:bg-blue-400"
+            disabled={isLoading || !inputMessage.trim()}
           >
             <span className="material-icons text-xl">send</span>
           </button>

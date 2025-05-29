@@ -18,6 +18,7 @@ import JobOpportunities from './services/JobOpportunities'
 import Registration from './services/Registration'
 import Complaints from './services/Complaints'
 import DisputeResolution from './services/DisputeResolution'
+import Officials from './services/Officials'
 
 const Dashboard = () => {
   const [isChatOpen, setIsChatOpen] = useState(false)
@@ -74,6 +75,9 @@ const Dashboard = () => {
         return <Complaints onBack={() => setActivePage(null)} />
       case 'dispute':
         return <DisputeResolution onBack={() => setActivePage(null)} />
+      case 'officials':
+        return <Officials onBack={() => setActivePage(null)} />
+        
       
       default:
         return (
@@ -314,6 +318,14 @@ const Dashboard = () => {
             </div>
 
             <div className="flex items-center space-x-4">
+              <button
+                onClick={() => setActivePage('officials')}
+                className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-colors duration-200 font-medium"
+              >
+      
+                <span>Officials</span>
+              </button>
+
               <button
                 onClick={toggleChat}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg flex items-center space-x-2 transition-colors duration-200 font-medium"
