@@ -63,7 +63,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
         </div>
 
         {/* Kagawads */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Maria Santos.jpg" alt="Hon. Maria Santos" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">Kagawad</h2>
           <p className="text-gray-600 mt-1">Hon. Maria Santos</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>
@@ -86,7 +87,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Roberto Garcia.jpg" alt="Hon. Roberto Garcia" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">Kagawad</h2>
           <p className="text-gray-600 mt-1">Hon. Roberto Garcia</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>
@@ -109,7 +111,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Lourdes Mendoza.jpg" alt="Hon. Lourdes Mendoza" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">Kagawad</h2>
           <p className="text-gray-600 mt-1">Hon. Lourdes Mendoza</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>
@@ -132,7 +135,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Antonio Reyes.jpg" alt="Hon. Antonio Reyes" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">Kagawad</h2>
           <p className="text-gray-600 mt-1">Hon. Antonio Reyes</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>
@@ -155,7 +159,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Carmen Torres.jpg" alt="Hon. Carmen Torres" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">Kagawad</h2>
           <p className="text-gray-600 mt-1">Hon. Carmen Torres</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>
@@ -178,7 +183,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Ricardo Santos.jpg" alt="Hon. Ricardo Santos" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">Kagawad</h2>
           <p className="text-gray-600 mt-1">Hon. Ricardo Santos</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>
@@ -201,7 +207,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Elena Cruz.jpg" alt="Hon. Elena Cruz" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">Kagawad</h2>
           <p className="text-gray-600 mt-1">Hon. Elena Cruz</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>
@@ -225,7 +232,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
         </div>
 
         {/* Secretary */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Ana Reyes.jpg" alt="Ms. Ana Reyes" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">Barangay Secretary</h2>
           <p className="text-gray-600 mt-1">Ms. Ana Reyes</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>
@@ -249,7 +257,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
         </div>
 
         {/* Treasurer */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Pedro Gomez.jpg" alt="Mr. Pedro Gomez" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">Barangay Treasurer</h2>
           <p className="text-gray-600 mt-1">Mr. Pedro Gomez</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>
@@ -273,7 +282,8 @@ const Officials: React.FC<OfficialsProps> = ({ onBack }) => {
         </div>
 
         {/* SK Chairperson */}
-        <div className="bg-white border border-gray-200 rounded-lg p-6">
+        <div className="bg-white border border-gray-200 rounded-lg p-6 flex flex-col items-center">
+          <img src="/Jose Garcia.jpg" alt="Mr. Jose Garcia" className="w-20 h-20 rounded-full object-cover mb-3 border-2 border-blue-200" />
           <h2 className="text-xl font-semibold text-gray-800">SK Chairperson</h2>
           <p className="text-gray-600 mt-1">Mr. Jose Garcia</p>
           <p className="text-sm text-gray-500 mt-2">Term: 2023-2025</p>
