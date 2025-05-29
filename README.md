@@ -35,6 +35,6 @@ The Sigla App is a proof-of-concept barangay information and service system feat
 ##  How it was Built
 - Developed entirely within a 1-day coding session at GENAIUS HACKATHON 2025
 - Built by a team of three developers
-- Focused on leveraging Google's cutting-edge AI services, specifically Vertex AI, to power the conversational interface
+- Focused on leveraging Google's AI services, specifically Vertex AI, to power the conversational interface
 
 
