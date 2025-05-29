@@ -2,7 +2,7 @@
 
 The Sigla App is a proof-of-concept barangay information and service system featuring an AI-powered conversational agent built with Google's Vertex AI. This application was developed by our team of three during a 1-day coding session for the GENAIUS HACKATHON 2025, aligning with the theme "AI for the Underserved: Tech AI in Justice". Sigla aims to provide underserved communities with intuitive, natural language access to vital local services and essential program information.
 
-## 🏗️ Technical Architecture
+##  Technical Architecture
 
 ### Software Stack
 
@@ -18,7 +18,7 @@ The Sigla App is a proof-of-concept barangay information and service system feat
 - TypeScript (Frontend)
 
 
-## ✨ Key Features
+##  Key Features
 
 ### AI-Powered Conversational Agent
 - Built with Google Vertex AI for advanced natural language understanding and generation
@@ -32,7 +32,7 @@ The Sigla App is a proof-of-concept barangay information and service system feat
 - Demonstrates how AI can bridge information gaps for underserved communities
 - Developed rapidly within a hackathon setting to showcase feasibility
 
-## 🚀 How it was Built
+##  How it was Built
 - Developed entirely within a 1-day coding session at GENAIUS HACKATHON 2025
 - Built by a team of three developers
 - Focused on leveraging Google's cutting-edge AI services, specifically Vertex AI, to power the conversational interface
