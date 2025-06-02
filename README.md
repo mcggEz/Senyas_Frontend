@@ -1,7 +1,7 @@
 # Sigla App: AI-Powered Barangay Information System
 
 ## Overview
-Sigla App is an innovative AI-powered barangay information system developed during the 2024 UP Diliman Hackathon. It aims to bridge the digital divide in local governance by providing an accessible platform for residents to access barangay services and information.
+Sigla App is an innovative AI-powered barangay information system developed during the 2025 Google Developer Groups on Campus UP Manila Hackathon. It aims to bridge the digital divide in local governance by providing an accessible platform for residents to access barangay services and information.
 
 ## Technical Architecture
 
@@ -19,6 +19,7 @@ Sigla App is an innovative AI-powered barangay information system developed duri
 -  AI-powered conversational agent for natural language interaction
 
 ## Acknowledgments
-- UP Manila Hackathon 2025
-- Google Cloud Platform
-- All contributors and supporters 
+- Google Developer Groups on Campus UP Manila 
+
+- Honniel Manes
+- Jayson Verzon
