@@ -9,14 +9,10 @@ Sigla App is an innovative AI-powered barangay information system developed duri
 - **Framework**: React with TypeScript
 - **Styling**: Tailwind CSS
 - **State Management**: React Hooks
-- **API Integration**: Axios
-- **Authentication**: JWT
+
 
 ### Backend Stack
-- **Framework**: Node.js with Express
-- **Database**: MongoDB
 - **AI Integration**: Google Vertex AI (Gemini)
-- **Authentication**: JWT
 - **Cloud Services**: Google Cloud Platform
 
 ## Key Features
