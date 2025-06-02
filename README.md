@@ -20,6 +20,6 @@ The Sigla App is a proof-of-concept web app developed for the GENAIUS HACKATHON 
 
 ## Acknowledgments
 - Google Developer Groups on Campus UP Manila 
+- Honniel Manes (Pitcher and Backend Developer)
+- Jayson Verzon (Documenation and Backend Developer
 
-- Honniel Manes
-- Jayson Verzon
