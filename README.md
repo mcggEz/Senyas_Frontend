@@ -12,7 +12,7 @@ The Sigla App is a proof-of-concept web app developed for the GENAIUS HACKATHON 
 
 
 ### Backend Stack
-- **AI Integration**: Google Vertex AI (Gemini)
+- **AI Integration**: Google Vertex AI
 - **Cloud Services**: Google Cloud Platform
 
 ## Key Features
@@ -21,5 +21,11 @@ The Sigla App is a proof-of-concept web app developed for the GENAIUS HACKATHON 
 ## Acknowledgments
 - Google Developer Groups on Campus UP Manila 
 - Honniel Manes (Pitcher and Backend Developer)
-- Jayson Verzon (Documenation and Backend Developer
+- Jayson Verzon (Documention and Backend Developer)
+
+## Certificate
+
+<img src="https://drive.google.com/uc?export=view&id=1bXv1ZqqXMhGjNEYjRyS5_hXlI8iGyBpe" alt="Document Preview" width="500"/>
+
+  
 
