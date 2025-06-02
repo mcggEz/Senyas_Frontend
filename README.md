@@ -33,7 +33,7 @@ A key part of our project was training large language models (LLMs) tailored exc
 ## Team Members  
 - **Honniel Manes** – Pitcher and Backend Developer  
 - **Jayson Verzon** – Documentation and Backend Developer
-- **Mc Ginez (ME)** – Frontend Developer
+- **Mc Ginez (ME)** – Fullstack Developer
 
 ---
 
