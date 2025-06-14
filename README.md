@@ -37,7 +37,7 @@ A key part of our project was training large language models (LLMs) tailored exc
 ---
 
 ## Acknowledgments  
-Thanks to <a href ="https://www.linkedin.com/company/gdgoc-upm/posts/?feedView=all>"**Google Developer Groups on Campus UP Manila** </a>for organizing the hackathon and supporting the developer community.
+Thanks to <a href="https://www.linkedin.com/company/gdgoc-upm/posts/?feedView=all">"**Google Developer Groups on Campus UP Manila** </a> for organizing the hackathon and supporting the developer community.
 
 ---
 
